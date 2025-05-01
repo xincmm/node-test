@@ -4,10 +4,10 @@ FROM node:22
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package.json 和 package-lock.json
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # 安装依赖
+RUN npm install -g pnpm
 RUN npm install
 
 # 复制应用代码
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3001
 
 # 启动命令
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
